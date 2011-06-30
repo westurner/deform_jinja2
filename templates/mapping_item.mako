@@ -9,17 +9,18 @@ errstr = 'error-%s' % field.oid
     % endif
     title="${field.description}"
     id="item-${field.oid}">
-% endif
   <!-- mapping_item -->
-  % if not (field.widget.hidden or field.widget.category == 'structural'):
+  % if not (field.widget.hidden or field.widget.category=='structural'):
   <label class="desc"
          title="${field.description}"
          for="${field.oid}"
-         >${field.title}\
-         % if field.required:\
-         <span class="req" id="req-${field.oid}">*</span>\
-         % endif\
+         >${field.title}
+         % if field.required:
+         <span class="req" id="req-${field.oid}">*</span>
+         % endif
   </label>
+  % endif
+
   ${field.serialize(cstruct)}
 
   % if field.error and not field.widget.hidden:
