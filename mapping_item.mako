@@ -1,48 +1,34 @@
-% if field.widget.hidden:
-<li 
-	% if not field.error:
-	    class=${field.error}
-	% else:
-	    class=${field.widget.error_class}
-	% endif
+# -*- coding: utf-8 -*-
+<%
+errstr = 'error-%s' % field.oid
+%>
+% if not field.widget.hidden:
+<li
+    % if field.error and field.widget.error_class:
+    class="${field.widget.error_class}"
+    % endif
     title="${field.description}"
-    id="item-${field.oid}" i18n:domain="deform">
+    id="item-${field.oid}">
 % endif
+  <!-- mapping_item -->
+  % if not (field.widget.hidden or field.widget.category == 'structural'):
+  <label class="desc"
+         title="${field.description}"
+         for="${field.oid}"
+         >${field.title}\
+         % if field.required:\
+         <span class="req" id="req-${field.oid}">*</span>\
+         % endif\
+  </label>
+  ${field.serialize(cstruct)}
 
-	<!-- mapping_item -->
-	% if not (field.widget.hidden or field.widget.category == 'structural'):
-	  	<label class="desc"
-	  		title="${field.description}"
-	        for="${field.oid}"
-	        >${field.title}
-	    
-			%if field.required:
-			    <span class="req"
-			    	id="req-${field.oid}">*</span>
-			% endif
-	
-		</label>
-	% endif
+  % if field.error and not field.widget.hidden:
+  % for index, msg in enumerate(field.error.messages()):
+  <p id=${index==0 and errstr or ('%s-%s' % (errstr, index))}"
+     class="${field.widget.error_class}">${msg}</p>
+  % endfor
+  % endif
 
-	${field.serialize(cstruct)}
-	  
-	% if field.error and not field.widget.hidden:
-		<%
-		errstr = 'error-%s' % field.oid
-		%>
-		% for msg in field.error.messages():
-			<p
-			% if repeat.msg.index==0:
-				id="${errstr}"
-			% else:
-				id=${'%s-%s' % (errstr, repeat.msg.index)}
-			% endif
-			class="${field.widget.error_class}" i18n:translate="">${msg}</p>
-		% endfor
-	% endif
-
-    <!-- /mapping_item -->
-    
-% if field.widget.hidden:
+  <!-- /mapping_item -->
 </li>
 % endif
