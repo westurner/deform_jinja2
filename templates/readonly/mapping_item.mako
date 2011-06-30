@@ -6,6 +6,7 @@
   <p class="desc"
      title="${field.description}"
      >${field.title}</p>
+  % endif
   ${field.serialize(cstruct, readonly=True)}
   <!-- /mapping_item -->
 </li>
