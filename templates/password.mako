@@ -7,4 +7,3 @@
        class="${field.widget.css_class}"
        % endif
        id="${field.oid}"/>
-
