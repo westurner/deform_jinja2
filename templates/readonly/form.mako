@@ -3,11 +3,11 @@
 rndr = field.renderer
 tmpl = field.widget.readonly_item_template
 %>
-<div class="deform"
-  % if field.name or None:
-  id="${field.name or None}"
-  % endif
-  >
+<div class="deform"\
+% if field.name or None:
+ id="${field.name or None}"\
+% endif
+>
 
   <div class="deformFormFieldset">
       % if field.title:
