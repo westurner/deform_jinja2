@@ -19,16 +19,17 @@ prototype = field.widget.prototype(field)
   <ul>
     % for tup in subfields:
     ${rndr(item_tmpl, field=tup[1], cstruct=tup[0], parent=field)}
+    % endfor
 
     <span class="deformInsertBefore"
       % if min_len:
-      min_len="$min_len"
+      min_len="${min_len}"
       % endif
       % if max_len:
-      max_len="$max_len"
+      max_len="${max_len}"
       % endif
       % if now_len:
-      now_len="$now_len"
+      now_len="${now_len}"
       % endif
      ></span>
 
