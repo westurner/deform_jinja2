@@ -1,0 +1,11 @@
+Broken:
+-------
+CheckboxChoice
+Sequence (aren't showing)
+RadioChoice crashing
+
+
+Password error message for minimun length isn't eval'ing
+(probably the internationalization hook)
+
+
