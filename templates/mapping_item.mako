@@ -1,23 +1,17 @@
 # -*- coding: utf-8 -*-
-<%
-errstr = 'error-%s' % field.oid
-%>
 % if not field.widget.hidden:
-<li
-    % if field.error and field.widget.error_class:
-    class="${field.widget.error_class}"
-    % endif
-    title="${field.description}"
-    id="item-${field.oid}">
+<li\
+% if field.error and field.widget.error_class:
+ class="${field.widget.error_class}"\
+% endif
+ title="${field.description}" id="item-${field.oid}">
   <!-- mapping_item -->
   % if not (field.widget.hidden or field.widget.category=='structural'):
-  <label class="desc"
-         title="${field.description}"
-         for="${field.oid}"
-         >${field.title}
-         % if field.required:
-         <span class="req" id="req-${field.oid}">*</span>
-         % endif
+  <label class="desc" title="${field.description}" for="${field.oid}">\
+   ${field.title}
+   % if field.required:
+    <span class="req" id="req-${field.oid}">*</span>
+   % endif
   </label>
   % endif
 
@@ -25,8 +19,11 @@ errstr = 'error-%s' % field.oid
 
   % if field.error and not field.widget.hidden:
   % for index, msg in enumerate(field.error.messages()):
-  <p id=${index==0 and errstr or ('%s-%s' % (errstr, index))}"
-     class="${field.widget.error_class}">${msg}</p>
+<%
+errstr = 'error-%s' % field.oid
+pid = (index==0 and errstr) or ('%s-%s' % (errstr, index))
+%>
+  <p id="${pid}" class="${field.widget.error_class}" i18n:translate="">${msg}</p>
   % endfor
   % endif
 
