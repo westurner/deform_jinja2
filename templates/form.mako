@@ -26,10 +26,8 @@ i18n:domain="deform"\
 
       % if field.error:
       <li class="errorLi">
-        <h3 class="errorMsgLbl" i18n:translate=""
-            >There was a problem with your submission</h3>
-        <p class="errorMsg" i18n:translate=""
-           >Errors have been highlighted below</p>
+        <h3 class="errorMsgLbl" i18n:translate="">There was a problem with your submission</h3>
+        <p class="errorMsg" i18n:translate="">Errors have been highlighted below</p>
       </li>
       % endif
 
