@@ -12,27 +12,23 @@ prototype = field.widget.prototype(field)
 
   <!-- sequence -->
 
-  <input type="hidden" name="__start__" value="${field.name}:sequence"
-         class="deformProto"
-         prototype="${prototype}" />
-
+  <input type="hidden" name="__start__" value="${field.name}:sequence" class="deformProto" prototype="${prototype}" />
   <ul>
     % for tup in subfields:
     ${rndr(item_tmpl, field=tup[1], cstruct=tup[0], parent=field)}
     % endfor
 
-    <span class="deformInsertBefore"
-      % if min_len:
-      min_len="${min_len}"
-      % endif
-      % if max_len:
-      max_len="${max_len}"
-      % endif
-      % if now_len:
-      now_len="${now_len}"
-      % endif
-     ></span>
-
+<span class="deformInsertBefore" \
+% if min_len:
+min_len="${min_len}"
+% endif
+% if max_len:
+max_len="${max_len}"
+% endif
+% if now_len:
+now_len="${now_len}"
+% endif
+></span>
   </ul>
 
   <a href="#"
