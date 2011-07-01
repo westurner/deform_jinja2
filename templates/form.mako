@@ -3,16 +3,16 @@
 rndr = field.renderer
 tmpl = field.widget.item_template
 %>
-<form
-  id="${field.formid}"
-  action="${field.action}"
-  method="${field.method}"
-  enctype="multipart/form-data"
-  accept-charset="utf-8"
-  i18n:domain="deform"
-  % if field.css_class:
-  class="${field.css_class}
-  % endif
+<form \
+id="${field.formid}" \
+action="${field.action}" \
+method="${field.method}" \
+enctype="multipart/form-data" \
+accept-charset="utf-8" \
+i18n:domain="deform"\
+% if field.css_class:
+ class="${field.css_class}"\
+% endif
 >
 
   <fieldset class="deformFormFieldset">
