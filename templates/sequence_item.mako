@@ -5,7 +5,8 @@
  class="${field.widget.error_class}"\
 % endif
  title="${field.description}">
-  <!-- sequence_item -->
+% endif
+<!-- sequence_item -->
   % if not field.widget.hidden:
   <span class="deformClosebutton" id="${field.oid}-close" title="Remove" onclick="javascript:deform.removeSequenceItem(this);"></span>
   % endif
@@ -16,11 +17,11 @@
 errstr = 'error-%s' % field.oid
 pid = (index==0 and errstr) or ('%s-%s' % (errstr, index))
 %>
-<h1>${errstr}</h1>
   <p id="${pid}" class="${field.widget.error_class}" i18n:translate="">${msg}</p>
   % endfor
   % endif
 
   <!-- /sequence_item -->
+% if not field.widget.hidden:
 </li>
 % endif

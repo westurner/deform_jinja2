@@ -5,7 +5,8 @@
  class="${field.widget.error_class}"\
 % endif
  title="${field.description}" id="item-${field.oid}">
-  <!-- mapping_item -->
+% endif
+<!-- mapping_item -->
   % if not (field.widget.hidden or field.widget.category=='structural'):
   <label class="desc" title="${field.description}" for="${field.oid}">\
    ${field.title}
@@ -28,5 +29,6 @@ pid = (index==0 and errstr) or ('%s-%s' % (errstr, index))
   % endif
 
   <!-- /mapping_item -->
+% if not field.widget.hidden:
 </li>
 % endif
