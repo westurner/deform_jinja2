@@ -3,7 +3,7 @@
        name="${field.name}" value="${field.widget.true_val}"
        id="${field.oid}"
        % if cstruct == field.widget.true_val:
-       checked="checked"
+       checked="True"
        % endif
        % if field.widget.css_class:
        class="${field.widget.css_class}"
