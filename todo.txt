@@ -1,10 +1,5 @@
 Broken:
 -------
-CheckboxChoice
-RadioChoice crashing
-
-style is different; sequences have outlines on stock demo
-
 Password error message for minimun length isn't eval'ing
 (probably the internationalization hook)
 
