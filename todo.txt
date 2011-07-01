@@ -1,6 +1,0 @@
-Broken:
--------
-Password error message for minimun length isn't eval'ing
-(probably the internationalization hook)
-
-
