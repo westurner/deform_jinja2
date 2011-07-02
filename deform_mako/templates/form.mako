@@ -17,7 +17,7 @@ i18n:domain="deform"\
 
   <fieldset class="deformFormFieldset">
     % if field.title:
-    <legend>${field.title}</legend>
+    <legend>${_(field.title)}</legend>
     % endif
 
     <input type="hidden" name="_charset_" />
@@ -26,16 +26,16 @@ i18n:domain="deform"\
 
       % if field.error:
       <li class="errorLi">
-        <h3 class="errorMsgLbl" i18n:translate="">There was a problem with your submission</h3>
-        <p class="errorMsg" i18n:translate="">Errors have been highlighted below</p>
+        <h3 class="errorMsgLbl">_('There was a problem with your submission')</h3>
+        <p class="errorMsg">_('Errors have been highlighted below')</p>
       </li>
       % endif
 
       % if field.title:
       <li class="section first">
-        <h3>${field.title}</h3>
+        <h3>${_(field.title)}</h3>
         % if field.description:
-        <div>${field.description}</div>
+        <div>${_(field.description)}</div>
         % endif
       </li>
       % endif
@@ -55,7 +55,7 @@ i18n:domain="deform"\
               type="${button.type}"
               class="btnText submit"
               value="${button.value}">
-            <span>${button.title}</span>
+            <span>${_(button.title)}</span>
           </button>
         % endfor
       </li>
