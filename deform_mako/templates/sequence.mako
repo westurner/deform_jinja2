@@ -31,7 +31,7 @@ ${rndr(item_tmpl, field=f, cstruct=c, parent=field)}
 </ul>
 
 <a href="#" class="deformSeqAdd" id="${field.oid}-seqAdd" onclick="javascript: return deform.appendSequenceItem(this);">\
-<small id="${field.oid}-addtext">${add_subitem_text}</small>\
+<small id="${field.oid}-addtext">${_(add_subitem_text)}</small>\
 </a>
 
 <script type="text/javascript">
