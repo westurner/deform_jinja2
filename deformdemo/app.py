@@ -33,7 +33,9 @@ from translationstring import TranslationStringFactory
 _ = TranslationStringFactory('deform')
 css = HtmlFormatter().get_style_defs('.highlight')
 
-def translator(term):
+def translator(term, domain='deform'):
+    if not hasattr(term, 'interpolate'): # not a translation string
+        term = TranslationStringFactory(domain)(term)
     return get_localizer(get_current_request()).translate(term)
 
 mako_template_dir = resource_filename('deform_mako', 'templates/')
