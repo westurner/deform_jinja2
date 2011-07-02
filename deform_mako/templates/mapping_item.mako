@@ -7,14 +7,14 @@
  title="${_(field.description)}" id="item-${field.oid}">
 % endif
 <!-- mapping_item -->
-  % if not (field.widget.hidden or field.widget.category=='structural'):
-  <label class="desc" title="${_(field.description)}" for="${field.oid}">\
-   ${_(field.title)}
-   % if field.required:
-    <span class="req" id="req-${field.oid}">*</span>
-   % endif
-  </label>
-  % endif
+% if not (field.widget.hidden or field.widget.category=='structural'):
+<label class="desc" title="${_(field.description)}" for="${field.oid}">\
+${_(field.title)}\
+% if field.required:
+<span class="req" id="req-${field.oid}">*</span>\
+% endif
+</label>
+% endif
 
   ${field.serialize(cstruct)}
 
@@ -24,7 +24,7 @@
 errstr = 'error-%s' % field.oid
 pid = (index==0 and errstr) or ('%s-%s' % (errstr, index))
 %>
-  <p id="${pid}" class="${field.widget.error_class}" i18n:translate="">${_(msg)}</p>
+  <p id="${pid}" class="${field.widget.error_class}">${_(msg)}</p>
   % endfor
   % endif
 
