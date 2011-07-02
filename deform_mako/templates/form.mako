@@ -9,12 +9,10 @@ action="${field.action}" \
 method="${field.method}" \
 enctype="multipart/form-data" \
 accept-charset="utf-8" \
-i18n:domain="deform"\
 % if field.css_class:
  class="${field.css_class}"\
 % endif
 >
-
   <fieldset class="deformFormFieldset">
     % if field.title:
     <legend>${_(field.title)}</legend>
@@ -26,8 +24,8 @@ i18n:domain="deform"\
 
       % if field.error:
       <li class="errorLi">
-        <h3 class="errorMsgLbl">_('There was a problem with your submission')</h3>
-        <p class="errorMsg">_('Errors have been highlighted below')</p>
+        <h3 class="errorMsgLbl">${_("There was a problem with your submission")}</h3>
+        <p class="errorMsg">${_("Errors have been highlighted below")}</p>
       </li>
       % endif
 
@@ -47,14 +45,15 @@ i18n:domain="deform"\
       <li class="buttons">
         % for button in field.buttons:
           <button
-              % if button.disabled:
-                 disabled="disabled"
-              % endif
               id="${field.formid+button.name}"
               name="${button.name}"
               type="${button.type}"
               class="btnText submit"
-              value="${button.value}">
+              value="${_(button.value)}"
+              % if button.disabled:
+               disabled="disabled"
+              % endif
+              >
             <span>${_(button.title)}</span>
           </button>
         % endfor
