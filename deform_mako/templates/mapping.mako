@@ -6,18 +6,18 @@ tmpl = field.widget.item_template
 <fieldset class="deformMappingFieldset">
   <!-- mapping -->
   % if field.title:
-  <legend>${field.title}</legend>
+  <legend>${_(field.title)}</legend>
   % endif
   <ul>
     % if field.errormsg:
     <li class="errorLi">
       <h3 class="errorMsgLbl">There was a problem with this section</h3>
-      <p class="errorMsg">${field.errormsg}</p>
+      <p class="errorMsg">${_(field.errormsg)}</p>
     </li>
     % endif
     % if field.description:
     <li class="section">
-      <div>${field.description}</div>
+      <div>${_(field.description)}</div>
     </li>
     % endif
     <input type="hidden" name="__start__" value="${field.name}:mapping"/>
