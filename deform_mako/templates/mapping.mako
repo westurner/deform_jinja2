@@ -11,7 +11,7 @@ tmpl = field.widget.item_template
   <ul>
     % if field.errormsg:
     <li class="errorLi">
-      <h3 class="errorMsgLbl">There was a problem with this section</h3>
+      <h3 class="errorMsgLbl">${_("There was a problem with this section")}</h3>
       <p class="errorMsg">${_(field.errormsg)}</p>
     </li>
     % endif
