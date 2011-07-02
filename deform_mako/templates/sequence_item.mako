@@ -17,7 +17,7 @@
 errstr = 'error-%s' % field.oid
 pid = (index==0 and errstr) or ('%s-%s' % (errstr, index))
 %>
-  <p id="${pid}" class="${field.widget.error_class}" i18n:translate="">${msg}</p>
+  <p id="${pid}" class="${field.widget.error_class}">${_(msg)}</p>
   % endfor
   % endif
 
