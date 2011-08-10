@@ -1,10 +1,13 @@
 import os
 from mako.template import Template
 
-def mako_renderer_factory(directory, translator=None):
-    def mako_renderer(tname, **kw):
-        filename = os.path.join(directory, tname) + '.mako'
-        template = Template(filename=filename)
-        return template.render(_=translator, **kw)
-    return mako_renderer
+class mako_renderer_factory(object):
+    def __init__(self, directory, translator=None):
+        self.directory = directory
+        self.translate = translator
 
+    def __call__(self, tname, **kw):
+        filename = os.path.join(self.directory, tname) + '.mako'
+        template = Template(filename=filename)
+        return template.render(_=self.translate, **kw)
+       
