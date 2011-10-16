@@ -12,8 +12,8 @@
             type="radio"
             name="{{ field.oid }}"
             value="{{ value }}"
-            id="{{ field.oid }}-{{ loop.index }}"/>
-          <label for="{{ field.oid }}-{{ loop.index }}">{{ title }}</label>
+            id="{{ field.oid }}-{{ loop.index0 }}"/>
+          <label for="{{ field.oid }}-{{ loop.index0 }}">{{ title }}</label>
         </li>
     {% endfor %}
     <input type="hidden" name="__end__"/>

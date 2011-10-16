@@ -14,21 +14,21 @@
 {{ rndr(item_tmpl, field=f, cstruct=c, parent=field) }}
 {% endfor %}
 
-<span class="deformInsertBefore"\
+<span class="deformInsertBefore"
 {% if min_len %}
- min_len="{{ min_len }}"\
+ min_len="{{ min_len }}"
 {% endif %}
 {% if max_len %}
- max_len="{{ max_len }}"\
+ max_len="{{ max_len }}"
 {% endif %}
 {% if now_len %}
- now_len="{{ now_len }}"\
+ now_len="{{ now_len }}"
 {% endif %}
 ></span>
 </ul>
 
-<a href="#" class="deformSeqAdd" id="{{ field.oid }}-seqAdd" onclick="javascript: return deform.appendSequenceItem(this);">\
-<small id="{{ field.oid }}-addtext">{{ _(add_subitem_text) }}</small>\
+<a href="#" class="deformSeqAdd" id="{{ field.oid }}-seqAdd" onclick="javascript: return deform.appendSequenceItem(this);">
+<small id="{{ field.oid }}-addtext">{{ _(add_subitem_text) }}</small>
 </a>
 
 <script type="text/javascript">
