@@ -18,6 +18,10 @@ accept-charset="utf-8"
 >
     <input type="hidden" name="_charset_" />
     <input type="hidden" name="__formid__" value="{{field.formid}}"/>
+    {% if field.nonce %}
+        <input type="hidden" name="nonce" value="{{field.nonce}}"/> <!-- Nonce for CSRF -->
+    {% endif %}
+
     <fieldset class="deformFormFieldset">
         {% if field.title %}
             <legend>{{ _(field.title) }}</legend>
