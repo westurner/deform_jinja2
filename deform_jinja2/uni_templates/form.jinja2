@@ -18,9 +18,6 @@ accept-charset="utf-8"
 >
     <input type="hidden" name="_charset_" />
     <input type="hidden" name="__formid__" value="{{field.formid}}"/>
-    {% if csrf_token %}
-        <input type="hidden" name="csrf_token" value="{{csrf_token}}"/>
-    {% endif %}
     <fieldset class="deformFormFieldset">
         {% if field.title %}
             <legend>{{ _(field.title) }}</legend>
