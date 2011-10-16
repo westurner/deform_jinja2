@@ -33,9 +33,13 @@ To run the `deformdemo <http://deformdemo.repoze.org>`_ application using the
 
 To use in a pyramid app:
 In your config.ini::
+
     deform.renderer = deform_jinja2.pyramid_uni.jinja2_renderer
+    or
+    deform.renderer = deform_jinja2.pyramid_standard.jinja2_renderer
 
 In your app initialization::
+
     renderer = settings['deform.renderer']
     renderer = config.maybe_dotted(renderer)
     deform.Form.set_default_renderer(renderer)
