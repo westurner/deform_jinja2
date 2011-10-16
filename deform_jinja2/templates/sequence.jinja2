@@ -3,7 +3,7 @@
 {% set item_tmpl = field.widget.item_template %}
 {% set min_len = field.widget.min_len or 0 %}
 {% set max_len = field.widget.max_len or 100000 %}
-{% set now_len = len(subfields) %}
+{% set now_len = subfields|length %}
 {% set prototype = field.widget.prototype(field) %}
 
 <div class="deformSeq" id="{{ field.oid }}">
