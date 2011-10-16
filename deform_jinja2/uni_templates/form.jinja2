@@ -1,3 +1,11 @@
+<ul>
+    {% if field.error %}
+        <li class="errorLi">
+            <h3 class="errorMsgLbl">{{ _("There was a problem with your submission") }}</h3>
+            <p class="errorMsg">{{ _("Errors have been highlighted below") }}</p>
+        </li>
+    {% endif %}
+</ul>
 <form 
 id="{{field.formid}}"
 action="{{field.action}}"
@@ -14,16 +22,6 @@ accept-charset="utf-8"
         {% if field.title %}
             <legend>{{ _(field.title) }}</legend>
         {% endif %}
-
-        <ul>
-
-        {% if field.error %}
-            <li class="errorLi">
-                <h3 class="errorMsgLbl">{{ _("There was a problem with your submission") }}</h3>
-                <p class="errorMsg">{{ _("Errors have been highlighted below") }}</p>
-            </li>
-        {% endif %}
-        </ul>
       {% if field.title %}
         <li class="section first">
             <h3>{{ _(field.title) }}</h3>
