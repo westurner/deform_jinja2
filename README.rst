@@ -1,10 +1,10 @@
-deform_mako
+deform_jinja2
 ===========
 
-This is a Mako port of the Chameleon templates included in Deform.
+This is Jinja2 templates using the uni-form model
 
 To run the `deformdemo <http://deformdemo.repoze.org>`_ application using the
-``deform_mako`` renderer:
+``deform_jinja2`` renderer:
 
 - Create a virtualenv::
 
@@ -23,7 +23,7 @@ To run the `deformdemo <http://deformdemo.repoze.org>`_ application using the
     $ cd deformdemo
     $ $VENV/bin/python setup.py develop
 
-- Use the deform_mako ``demo.ini`` file to run a demo app server via ``paster
+- Use the deform_jinja2 ``demo.ini`` file to run a demo app server via ``paster
   serve``:
 
     $ $VENV/bin/paster demo.ini

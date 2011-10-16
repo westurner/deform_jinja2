@@ -10,22 +10,22 @@ try:
 except:
     README = ''
 
-requires = ['deform']
+requires = ['deform', 'Jinja2']
 
 setupkw = dict(
-    name='deform_mako',
+    name='deform_jinja2',
     version='0.0',
-    description='Mako templates for Deform widgets',
+    description='Jinja2 templates for Deform widgets',
     long_description=README,
     classifiers=[
         "Intended Audience :: Developers",
         "Programming Language :: Python",
         ],
     keywords='web forms form generation schema validation',
-    author="Somebody",
-    author_email="somebody@example.com",
-    url="http://example.com",
-    license="some license",
+    author="John Anderson",
+    author_email="sontek@gmail.com",
+    url="https://github.com/sontek/deform_jinja2",
+    license="",
     packages=find_packages(),
     include_package_data=True,
     zip_safe=False,
