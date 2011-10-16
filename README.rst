@@ -30,3 +30,12 @@ To run the `deformdemo <http://deformdemo.repoze.org>`_ application using the
 
 - The demo app will be running on port 8521.  See the ``README.rst`` in the
   deformdemo checkout for instructions about how to run the selenium tests.
+
+To use in a pyramid app:
+In your config.ini::
+    deform.renderer = deform_jinja2.pyramid_uni.jinja2_renderer
+
+In your app initialization::
+    renderer = settings['deform.renderer']
+    renderer = config.maybe_dotted(renderer)
+    deform.Form.set_default_renderer(renderer)
