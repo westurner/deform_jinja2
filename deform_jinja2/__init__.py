@@ -4,9 +4,6 @@ from pyramid import i18n
 from pyramid.threadlocal import get_current_request
 
 class jinja2_renderer_factory(object):
-    def csrf_token(self):
-        return get_current_request().session.get_csrf_token()
-
     def __init__(self, directory, extensions=[], translator=None):
         self.directory = directory
         self.translator = translator
@@ -22,7 +19,6 @@ class jinja2_renderer_factory(object):
         jinja_env.install_gettext_callables(self.translator.gettext, self.translator.ngettext)
 
         template = jinja_env.get_template(tname + '.jinja2')
-        kw['csrf_token'] = self.csrf_token()
 
         return template.render(**kw)
 
