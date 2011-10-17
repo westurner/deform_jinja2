@@ -4,6 +4,9 @@
             <h3 class="errorMsgLbl">{{ _("There was a problem with your submission") }}</h3>
             <p class="errorMsg">{{ _("Errors have been highlighted below") }}</p>
         </li>
+        {% for error in field.error.children %}
+        <li class="errorList"> {{error.node.name}} {{error.msg}}</li>
+        {% endfor %}
     {% endif %}
 </ul>
 <form 
