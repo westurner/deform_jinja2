@@ -1,36 +1,42 @@
 from jinja2 import Environment
 from jinja2 import FileSystemLoader
+from pkg_resources import resource_filename
+
+class DummyTranslator(object):
+    @staticmethod
+    def gettext(message):
+        return message
+
+    @staticmethod
+    def ngettext(singular, plural, n):
+        if n > 1:
+            return plural
+
+        return singular
 
 class jinja2_renderer_factory(object):
-    def __init__(self, directory, extensions=[], translator=None):
-        self.directory = directory
-        self.translator = translator
-        self.extensions = extensions
+    def __init__(self, search_paths=(), translator=None, uni_form=False, extensions=[]):
 
-        if 'jinja2.ext.i18n' not in self.extensions:
-            self.extensions.append('jinja2.ext.i18n')
+        if 'jinja2.ext.i18n' not in extensions:
+           extensions.append('jinja2.ext.i18n')
+
+        self.env = Environment(extensions=extensions)
+        self.env.loader = FileSystemLoader(())
+
+        for path in search_paths:
+            self.add_search_path(path)
+
+        if translator == None:
+            self.env.install_gettext_callables(DummyTranslator.gettext, DummyTranslator.ngettext)
+
+        if uni_form:
+            self.add_search_path('deform_jinja2:uni_templates')
+        else:
+            self.add_search_path('deform_jinja2:templates')
+
+    def add_search_path(self, path):
+        self.env.loader.searchpath.append(resource_filename(*(path.split(':'))))
 
     def __call__(self, tname, **kw):
-        jinja_env = Environment(extensions=self.extensions)
-        jinja_env.loader = FileSystemLoader(self.directory)
-        jinja_env.install_gettext_callables(self.translator.gettext, self.translator.ngettext)
-
-        template = jinja_env.get_template(tname + '.jinja2')
-
+        template = self.env.get_template(tname + '.jinja2')
         return template.render(**kw)
-
-class pyramid_renderer_factory(object):
-    """ If you have pyramid_jinja2 installed you can use this
-    as the renderer factory for deform
-    """
-    def __init__(self, config, uni_form=False):
-        self.jinja2_env = config.get_jinja2_environment()
-        self.jinja2_env.autoescape = False
-        if uni_form:
-            config.add_jinja2_search_path('deform_jinja2:uni_templates/')
-        else:
-            config.add_jinja2_search_path('deform_jinja2:templates/')
-
-    def __call__(self, tname, **kwargs):
-        template = self.jinja2_env.get_template(tname + '.jinja2')
-        return template.render(**kwargs)
