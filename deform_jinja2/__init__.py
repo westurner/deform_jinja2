@@ -1,8 +1,5 @@
 from jinja2 import Environment
 from jinja2 import FileSystemLoader
-from pyramid.threadlocal import get_current_request
-from translationstring import TranslationStringFactory
-from pyramid.i18n import get_localizer
 
 class jinja2_renderer_factory(object):
     def __init__(self, directory, extensions=[], translator=None):
@@ -23,24 +20,18 @@ class jinja2_renderer_factory(object):
 
         return template.render(**kw)
 
-class GetTextWrapper(object):
+class pyramid_renderer_factory(object):
+    """ If you have pyramid_jinja2 installed you can use this
+    as the renderer factory for deform
+    """
+    def __init__(self, config, uni_form=False):
+        self.jinja2_env = config.get_jinja2_environment()
 
-    def __init__(self, domain='deform'):
-        self.domain = domain
+        if uni_form:
+            config.add_jinja2_search_path('deform_jinja2:uni_templates/')
+        else:
+            config.add_jinja2_search_path('deform_jinja2:templates/')
 
-    def translate(self, term):
-        if not hasattr(term, 'interpolate'): # not a translation string
-            term = TranslationStringFactory(self.domain)(term)
-        return get_localizer(get_current_request()).translate(term)
-
-    def pluralize(self, term):
-        if not hasattr(term, 'interpolate'): # not a translation string
-            term = TranslationStringFactory(self.domain)(term)
-        return get_localizer(get_current_request()).pluralize(term)
-
-
-    def gettext(self, message):
-        return self.translate(message)
-
-    def ngettext(self, singular, plural, n):
-        return self.pluralize(singular, plural, n)
+    def __call__(self, tname, **kwargs):
+        template = self.jinja2_env.get_template(tname + '.jinja2')
+        return template.render(**kwargs)
