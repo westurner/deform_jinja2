@@ -27,7 +27,9 @@ class jinja2_renderer_factory(object):
             self.add_search_path(path)
 
         if translator == None:
-            self.env.install_gettext_callables(DummyTranslator.gettext, DummyTranslator.ngettext)
+            translator = DummyTranslator
+
+        self.env.install_gettext_callables(translator.gettext, translator.ngettext)
 
         if uni_form:
             self.add_search_path('deform_jinja2:uni_templates')
