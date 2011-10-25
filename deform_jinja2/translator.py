@@ -1,20 +1,27 @@
+from pyramid.threadlocal import get_current_request
+from translationstring import TranslationStringFactory
+from pyramid.i18n import get_localizer
+
 class PyramidTranslator(object):
 
     def __init__(self, domain='deform'):
         self.domain = domain
 
-    @property
-    def localizer(self):
-        from pyramid import i18n
-        from pyramid.threadlocal import get_current_request
+    def translate(self, term):
 
+        if not hasattr(term, 'interpolate'): # not a translation string
+            term = TranslationStringFactory(self.domain)(term)
+        return get_localizer(get_current_request()).translate(term)
 
-        return i18n.get_localizer(get_current_request())
+    def pluralize(self, term):
+        if not hasattr(term, 'interpolate'): # not a translation string
+            term = TranslationStringFactory(self.domain)(term)
+        return get_localizer(get_current_request()).pluralize(term)
+
 
     def gettext(self, message):
-        return self.localizer.translate(message,
-                                        domain=self.domain)
+        return self.translate(message)
 
     def ngettext(self, singular, plural, n):
-        return self.localizer.pluralize(singular, plural, n,
-                                        domain=self.domain)
+        return self.pluralize(singular, plural, n)
+
