@@ -10,7 +10,6 @@ class jinja2_renderer_factory(object):
         if 'jinja2.ext.i18n' not in self.extensions:
             self.extensions.append('jinja2.ext.i18n')
 
-
     def __call__(self, tname, **kw):
         jinja_env = Environment(extensions=self.extensions)
         jinja_env.loader = FileSystemLoader(self.directory)
@@ -26,7 +25,7 @@ class pyramid_renderer_factory(object):
     """
     def __init__(self, config, uni_form=False):
         self.jinja2_env = config.get_jinja2_environment()
-
+        self.jinja2_env.autoescape = False
         if uni_form:
             config.add_jinja2_search_path('deform_jinja2:uni_templates/')
         else:
