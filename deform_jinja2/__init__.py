@@ -40,5 +40,8 @@ class jinja2_renderer_factory(object):
         self.env.loader.searchpath.append(resource_filename(*(path.split(':'))))
 
     def __call__(self, tname, **kw):
-        template = self.env.get_template(tname + '.jinja2')
+        if not '.jinja2' in tname:
+            tname += '.jinja2'
+
+        template = self.env.get_template(tname)
         return template.render(**kw)
