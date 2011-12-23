@@ -26,12 +26,13 @@ accept-charset="utf-8"
         {{field.renderer(field.widget.item_template, field=f, cstruct=cstruct.get(f.name, null)) }}
     {% endfor %}
 
+    <div class="actions">
     {% for button in field.buttons %}
         <button
             id="{{field.formid+button.name}}"
             name="{{button.name}}"
             type="{{button.type}}"
-            class="btnText submit primaryAction"
+            class="btn btnText submit primaryAction"
             value="{{ _(button.value) }}"
             {% if button.disabled %}
             disabled="disabled"
@@ -40,7 +41,7 @@ accept-charset="utf-8"
         <span>{{ _(button.title) }}</span>
         </button>
     {% endfor %}
-    </li>
+    </div>
 
 {% if field.use_ajax %}
 <script type="text/javascript">
