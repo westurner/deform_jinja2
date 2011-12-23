@@ -1,14 +1,3 @@
-<ul>
-    {% if field.error %}
-        <li class="errorLi">
-            <h3 class="errorMsgLbl">{{ _("There was a problem with your submission") }}</h3>
-            <p class="errorMsg">{{ _("Errors have been highlighted below") }}</p>
-        </li>
-        {% for error in field.error.children %}
-        <li class="errorList"> {{ _(error.node.name) }} {{ _(error.msg) }}</li>
-        {% endfor %}
-    {% endif %}
-</ul>
 <form 
 id="{{field.formid}}"
 action="{{field.action}}"
@@ -21,7 +10,6 @@ accept-charset="utf-8"
 >
     <input type="hidden" name="_charset_" />
     <input type="hidden" name="__formid__" value="{{field.formid}}"/>
-    <fieldset class="deformFormFieldset">
         {% if field.title %}
             <legend>{{ _(field.title) }}</legend>
         {% endif %}
@@ -38,7 +26,6 @@ accept-charset="utf-8"
         {{field.renderer(field.widget.item_template, field=f, cstruct=cstruct.get(f.name, null)) }}
     {% endfor %}
 
-    <div class="buttonHolder">
     {% for button in field.buttons %}
         <button
             id="{{field.formid+button.name}}"
@@ -53,9 +40,7 @@ accept-charset="utf-8"
         <span>{{ _(button.title) }}</span>
         </button>
     {% endfor %}
-    </div>
     </li>
-  </fieldset>
 
 {% if field.use_ajax %}
 <script type="text/javascript">
