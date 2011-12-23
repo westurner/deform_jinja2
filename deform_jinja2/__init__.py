@@ -15,7 +15,8 @@ class DummyTranslator(object):
         return singular
 
 class jinja2_renderer_factory(object):
-    def __init__(self, search_paths=(), translator=None, uni_form=False, extensions=[]):
+    def __init__(self, search_paths=(), default_templates='deform_jinja2:templates',
+            translator=None, extensions=[]):
 
         if 'jinja2.ext.i18n' not in extensions:
            extensions.append('jinja2.ext.i18n')
@@ -31,10 +32,7 @@ class jinja2_renderer_factory(object):
 
         self.env.install_gettext_callables(translator.gettext, translator.ngettext)
 
-        if uni_form:
-            self.add_search_path('deform_jinja2:uni_templates')
-        else:
-            self.add_search_path('deform_jinja2:templates')
+        self.add_search_path(default_templates)
 
     def add_search_path(self, path):
         self.env.loader.searchpath.append(resource_filename(*(path.split(':'))))
