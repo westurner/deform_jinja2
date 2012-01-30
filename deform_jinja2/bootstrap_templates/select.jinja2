@@ -3,6 +3,9 @@
         {% if field.widget.css_class %}
           class="{{ field.widget.css_class }}"
         {% endif %}
+        {% if field.widget.multiple %}
+          multiple
+        {% endif %}
 >
  {% for value, description in field.widget.values %}
  <option
