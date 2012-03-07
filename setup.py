@@ -14,7 +14,7 @@ requires = ['deform', 'Jinja2']
 
 setupkw = dict(
     name='deform_jinja2',
-    version='0.0',
+    version='0.3',
     description='Jinja2 templates for Deform widgets',
     long_description=README,
     classifiers=[
