@@ -11,10 +11,11 @@ except:
     README = ''
 
 requires = ['deform', 'Jinja2']
+tests_require = ['pyramid']
 
 setupkw = dict(
     name='deform_jinja2',
-    version='0.3',
+    version='0.4',
     description='Jinja2 templates for Deform widgets',
     long_description=README,
     classifiers=[
@@ -30,10 +31,9 @@ setupkw = dict(
     include_package_data=True,
     zip_safe=False,
     install_requires=requires,
-    entry_points = """\
-    [paste.app_factory]
-    demo = deformdemo.app:run
-    """,
+    extras_require = {
+        'testing':tests_require
+        },
     )
 
 setup(**setupkw)

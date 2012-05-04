@@ -1,3 +1,25 @@
+# -*- coding: utf-8 -*-
+"""
+Jinja2 templates for deform.
+
+To use in Pyramid:
+
+In your settings.ini::
+
+    # default:
+    # deform_jinja2.i18n.domain=deform
+
+    # One of:
+    deform_jinja2.template_search_path=deform_jinja2:templates
+    deform_jinja2.template_search_path=deform_jinja2:uni_templates
+    deform_jinja2.template_search_path=deform_jinja2:bootstrap_templates
+
+In your app initialization::
+
+    config.include('deform_jinja2')
+
+"""
+
 from jinja2 import Environment
 from jinja2 import FileSystemLoader
 from pkg_resources import resource_filename
@@ -43,3 +65,15 @@ class jinja2_renderer_factory(object):
 
         template = self.env.get_template(tname)
         return template.render(**kw)
+
+
+def includeme(config):
+    from translator import PyramidTranslator
+    import deform
+    settings = config.registry.settings
+    domain = settings.get('deform_jinja2.i18n.domain', 'deform')
+    search_path = settings.get('deform_jinja2.template_search_path', '').strip()
+    renderer = jinja2_renderer_factory(search_paths=search_path.split(), 
+            translator=PyramidTranslator(domain=domain))
+    deform.Form.set_default_renderer(renderer)
+
