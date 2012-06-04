@@ -11,9 +11,8 @@ except:
     README = ''
 
 requires = ['deform', 'Jinja2']
-tests_require = ['pyramid']
 
-setupkw = dict(
+setup(
     name='deform_jinja2',
     version='0.4',
     description='Jinja2 templates for Deform widgets',
@@ -31,9 +30,6 @@ setupkw = dict(
     include_package_data=True,
     zip_safe=False,
     install_requires=requires,
-    extras_require = {
-        'testing':tests_require
-        },
+    tests_require = ['pyramid', 'nose'],
+    test_suite = "nose.collector"
     )
-
-setup(**setupkw)

@@ -13,10 +13,9 @@ class PyramidTranslator(object):
             term = TranslationStringFactory(self.domain)(term)
         return get_localizer(get_current_request()).translate(term)
 
-    def pluralize(self, term):
-        if not hasattr(term, 'interpolate'): # not a translation string
-            term = TranslationStringFactory(self.domain)(term)
-        return get_localizer(get_current_request()).pluralize(term)
+    def pluralize(self, singular, plural, n):
+        localizer = get_localizer(get_current_request())
+        return localizer.pluralize(singular, plural, n)
 
 
     def gettext(self, message):
