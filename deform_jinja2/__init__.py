@@ -68,7 +68,7 @@ class jinja2_renderer_factory(object):
 
 
 def includeme(config):
-    from translator import PyramidTranslator
+    from deform_jinja2.translator import PyramidTranslator
     import deform
     settings = config.registry.settings
     domain = settings.get('deform_jinja2.i18n.domain', 'deform')
